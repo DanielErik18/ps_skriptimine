@@ -23,25 +23,6 @@ function square
     $ruudukulg = Read-Host "Enter side of the square: "
     $pindala = [int32]$ruudukulg*[int32]$ruudukulg
     Write-Host "`nArea of the square : $pindala" -ForegroundColor Green
-
-    do
-    {
-        Write-Host "`n Please select the next option" -ForegroundColor Yellow
-        Write-Host "`n 1: Return to Main Menu" -ForegroundColor Green
-        Write-Host "`n 2: Exit" -ForegroundColor Green
-
-        $valik = Read-Host "`n Enter your choice: "
-    
-        if($valik -eq 2){
-        exit
-        }
-        if($valik -eq 1){
-        continue
-        }
-        else{
-        Write-Host "`nEnter correct option" -ForegroundColor Red
-        }
-    }until($valik -eq "1")
 }
 
 #Ristküliku arvutamise funktsioon
@@ -53,25 +34,6 @@ function rectangle
     $laius = Read-Host "Enter length of the Rectangle: "
     $pindala = [int32]$pikkus*[int32]$laius
     Write-Host "`nArea of the Rectangle : $pindala" -ForegroundColor Green
-
-    do
-    {
-        Write-Host "`n Please select the next option" -ForegroundColor Yellow
-        Write-Host "`n 1: Return to Main Menu" -ForegroundColor Green
-        Write-Host "`n 2: Exit" -ForegroundColor Green
-
-        $valik = Read-Host "`n Enter your choice: "
-    
-        if($valik -eq 2){
-        exit
-        }
-        if($valik -eq 1){
-        continue
-        }
-        else{
-        Write-Host "`nEnter correct option" -ForegroundColor Red
-        }
-    }until($valik -eq "1")
 }
 
 #Ringi pindala arvutamise funktsioon
@@ -83,8 +45,23 @@ function circle
     
     $pindala = [int32]$raadius*[int32]$raadius*3.14
     Write-Host "`nArea of the Circle : $pindala" -ForegroundColor Green
+}
 
-    do
+#Kolmnurga arvutamise funktsioon
+function triangle
+{
+    cls
+    Write-Host "`t`t Area of Triangle" -ForegroundColor Green
+    $alus = Read-Host "Enter base of Triangle "
+    $kõrgus = Read-Host "Enter height of Triangle "
+    $pindala = [int32]$alus*[int32]$kõrgus/2
+    Write-Host "`nArea of the Circle : $pindala" -ForegroundColor Green
+}
+
+#Funktsioon, mis kuvatakse peale arvutus tehet, et teada saada, mida edasi teha.
+function checkmenu
+{
+do
     {
         Write-Host "`n Please select the next option" -ForegroundColor Yellow
         Write-Host "`n 1: Return to Main Menu" -ForegroundColor Green
@@ -97,36 +74,6 @@ function circle
         }
         if($valik -eq 1){
         continue
-        }
-        else{
-        Write-Host "`nEnter correct option" -ForegroundColor Red
-        }
-    }until($valik -eq "1")
-}
-
-#Kolmnurga arvutamise funktsioon
-function triangle
-{
-    cls
-    Write-Host "`t`t Area of Triangle" -ForegroundColor Green
-    $alus = Read-Host "Enter base of Triangle "
-    $kõrgus = Read-Host "Enter height of Triangle "
-    $pindala = [int32]$alus*[int32]$kõrgus/2
-    Write-Host "`nArea of the Circle : $pindala" -ForegroundColor Green
-    
-    do
-    {
-        Write-Host "`n Please select the next option" -ForegroundColor Yellow
-        Write-Host "`n 1: Return to Main Menu" -ForegroundColor Green
-        Write-Host "`n 2: Exit" -ForegroundColor Green
-
-        $valik = Read-Host "`n Enter your choice: "
-    
-        if($valik -eq 2){
-        exit
-        }
-        if($valik -eq 1){
-        mainmenu
         }
         else{
         Write-Host "`nEnter correct option" -ForegroundColor Red
@@ -143,18 +90,22 @@ switch($valik)
         1
             {
                 square
+                checkmenu
             }
         2
             {
                 rectangle
+                checkmenu
             }
         3
             {
                 circle
+                checkmenu
             }
         4
             {
                 triangle
+                checkmenu
             }
     }
 }
